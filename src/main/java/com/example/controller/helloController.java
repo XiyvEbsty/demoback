@@ -1,7 +1,7 @@
-package com.zwtj.demoback.controller;
+package com.example.controller;
 
-import com.zwtj.demoback.common.Result;
-import com.zwtj.demoback.service.AdminService;
+import com.example.common.Result;
+import com.example.service.AdminService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

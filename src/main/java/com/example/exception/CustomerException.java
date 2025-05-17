@@ -1,4 +1,4 @@
-package com.zwtj.demoback.exception;
+package com.example.exception;
 
 /**
  * 自定义异常

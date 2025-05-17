@@ -1,4 +1,4 @@
-package com.zwtj.demoback.common;
+package com.example.common;
 
 public class Result {
     private String code;

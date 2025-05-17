@@ -1,6 +1,6 @@
-package com.zwtj.demoback.service;
+package com.example.service;
 
-import com.zwtj.demoback.exception.CustomerException;
+import com.example.exception.CustomerException;
 import org.springframework.stereotype.Service;
 
 @Service
