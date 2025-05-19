@@ -8,21 +8,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    @Resource
-    UserMapper userMapper;
-
-    public  String admin(String name) {
-        if ("admin".equals(name)) {
-            return "admin";
-        }
-        else{
-            throw new CustomerException("账号错误");
-        }
-    }
-    public List<User> selectAll(){
-        return userMapper.selectAll();
-    }
+    User findByUsername(String username);
+    
+    User findById(Long id);
+    
+    boolean register(User user);
+    
+    boolean update(User user);
+    
+    boolean deleteById(Long id);
+    
+    String login(String username, String password);
+    
+    List<User> selectAll();
 }

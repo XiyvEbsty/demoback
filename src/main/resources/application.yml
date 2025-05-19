@@ -4,22 +4,25 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://localhost:3306/job
+
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: 2503861416a
     # Enable SQL initialization
-    initialization-mode: always
-    schema: classpath:schema.sql
-    data: classpath:data.sql
   sql:
     init:
-      mode: always
+      mode: never
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
 
 # MyBatis configuration
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
+    mapper-locations: classpath:mapper/*.xml
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+        map-underscore-to-camel-case: true
 
 # Server configuration
 server:
@@ -34,3 +37,5 @@ cors:
   allowed-headers: "*"
   allow-credentials: true
   max-age: 3600
+
+

@@ -2,18 +2,19 @@ package com.example.entity;
 
 
 /*用户信息*/
+
+import java.time.LocalDateTime;
+
 public class User {
-    private Integer id;
+    private Long id;
     private String username;
     private String password;
-    private String email;
-    private String phone;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,4 +49,63 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    private String email;
+    private String phone;
+    private String realName;
+    private String avatar;
+    private String role;
+    private Integer status;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+
+    // Getters and Setters
 }
