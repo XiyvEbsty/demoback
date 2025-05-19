@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.HollandQuestionMapper">
+    <!-- 查询所有Holland问题 -->
+    <select id="findAll" resultType="com.example.entity.HollandQuestion">
+        SELECT * FROM holland_question ORDER BY id
+    </select>
+    
+    <!-- 根据ID查询Holland问题 -->
+    <select id="findById" resultType="com.example.entity.HollandQuestion">
+        SELECT * FROM holland_question WHERE id = #{id}
+    </select>
+    
+    <!-- 根据类型查询Holland问题 -->
+    <select id="findByType" resultType="com.example.entity.HollandQuestion">
+        SELECT * FROM holland_question WHERE type = #{type} ORDER BY id
+    </select>
+    
+    <!-- 插入Holland问题 -->
+    <insert id="insert" parameterType="com.example.entity.HollandQuestion" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO holland_question(question_text, type, status, create_time, update_time) 
+        VALUES(#{questionText}, #{type}, #{status}, NOW(), NOW())
+    </insert>
+    
+    <!-- 更新Holland问题 -->
+    <update id="update" parameterType="com.example.entity.HollandQuestion">
+        UPDATE holland_question SET 
+            question_text = #{questionText}, 
+            type = #{type}, 
+            status = #{status},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+    
+    <!-- 删除Holland问题 -->
+    <delete id="deleteById">
+        DELETE FROM holland_question WHERE id = #{id}
+    </delete>
+</mapper> 

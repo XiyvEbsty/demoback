@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.JobMapper">
+    <!-- 查询所有职位 -->
+    <select id="findAll" resultType="com.example.entity.Job">
+        SELECT * FROM jobs
+    </select>
+    
+    <!-- 根据ID查询职位 -->
+    <select id="findById" resultType="com.example.entity.Job">
+        SELECT * FROM jobs WHERE id = #{id}
+    </select>
+    
+    <!-- 插入新职位 -->
+    <insert id="insert" parameterType="com.example.entity.Job">
+        INSERT INTO jobs(
+            title, company, description, industry, type, location, job_url,
+            realistic_score, investigative_score, artistic_score, social_score, 
+            enterprising_score, conventional_score, technical_functional_score, 
+            general_managerial_score, autonomy_independence_score, security_stability_score,
+            entrepreneurial_creativity_score, service_dedication_score, pure_challenge_score, 
+            lifestyle_score
+        ) VALUES(
+            #{title}, #{company}, #{description}, #{industry}, #{type}, #{location}, #{jobUrl},
+            #{realisticScore}, #{investigativeScore}, #{artisticScore}, #{socialScore}, 
+            #{enterprisingScore}, #{conventionalScore}, #{technicalFunctionalScore}, 
+            #{generalManagerialScore}, #{autonomyIndependenceScore}, #{securityStabilityScore},
+            #{entrepreneurialCreativityScore}, #{serviceDedicationScore}, #{pureChallengeScore}, 
+            #{lifestyleScore}
+        )
+    </insert>
+    
+    <!-- 更新职位 -->
+    <update id="update" parameterType="com.example.entity.Job">
+        UPDATE jobs SET 
+            title = #{title}, 
+            company = #{company}, 
+            description = #{description},
+            industry = #{industry}, 
+            type = #{type}, 
+            location = #{location}, 
+            job_url = #{jobUrl},
+            realistic_score = #{realisticScore}, 
+            investigative_score = #{investigativeScore},
+            artistic_score = #{artisticScore}, 
+            social_score = #{socialScore},
+            enterprising_score = #{enterprisingScore}, 
+            conventional_score = #{conventionalScore},
+            technical_functional_score = #{technicalFunctionalScore}, 
+            general_managerial_score = #{generalManagerialScore},
+            autonomy_independence_score = #{autonomyIndependenceScore}, 
+            security_stability_score = #{securityStabilityScore},
+            entrepreneurial_creativity_score = #{entrepreneurialCreativityScore}, 
+            service_dedication_score = #{serviceDedicationScore},
+            pure_challenge_score = #{pureChallengeScore}, 
+            lifestyle_score = #{lifestyleScore}
+        WHERE id = #{id}
+    </update>
+    
+    <!-- 删除职位 -->
+    <delete id="deleteById">
+        DELETE FROM jobs WHERE id = #{id}
+    </delete>
+    
+    <!-- 根据条件查询匹配职位 -->
+    <select id="findMatchingJobs" resultType="com.example.entity.Job">
+        SELECT * FROM jobs 
+        WHERE industry = #{industry}
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        <if test="location != null">
+            AND location = #{location}
+        </if>
+        ORDER BY id DESC
+    </select>
+</mapper> 

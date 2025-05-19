@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CareerAnchorQuestionMapper">
+    <!-- 查询所有职业锚问题 -->
+    <select id="findAll" resultType="com.example.entity.CareerAnchorQuestion">
+        SELECT * FROM career_anchor_question ORDER BY id
+    </select>
+    
+    <!-- 根据ID查询职业锚问题 -->
+    <select id="findById" resultType="com.example.entity.CareerAnchorQuestion">
+        SELECT * FROM career_anchor_question WHERE id = #{id}
+    </select>
+    
+    <!-- 根据类型查询职业锚问题 -->
+    <select id="findByType" resultType="com.example.entity.CareerAnchorQuestion">
+        SELECT * FROM career_anchor_question WHERE type = #{type} ORDER BY id
+    </select>
+    
+    <!-- 插入职业锚问题 -->
+    <insert id="insert" parameterType="com.example.entity.CareerAnchorQuestion" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO career_anchor_question(question_text, type, status, create_time, update_time) 
+        VALUES(#{questionText}, #{type}, #{status}, NOW(), NOW())
+    </insert>
+    
+    <!-- 更新职业锚问题 -->
+    <update id="update" parameterType="com.example.entity.CareerAnchorQuestion">
+        UPDATE career_anchor_question SET 
+            question_text = #{questionText}, 
+            type = #{type}, 
+            status = #{status},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+    
+    <!-- 删除职业锚问题 -->
+    <delete id="deleteById">
+        DELETE FROM career_anchor_question WHERE id = #{id}
+    </delete>
+</mapper> 

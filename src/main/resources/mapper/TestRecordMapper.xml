@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TestRecordMapper">
+    <!-- 查询所有测评记录 -->
+    <select id="findAll" resultType="com.example.entity.TestRecord">
+        SELECT * FROM test_record ORDER BY id DESC
+    </select>
+    
+    <!-- 根据ID查询测评记录 -->
+    <select id="findById" resultType="com.example.entity.TestRecord">
+        SELECT * FROM test_record WHERE id = #{id}
+    </select>
+    
+    <!-- 根据用户ID查询测评记录 -->
+    <select id="findByUserId" resultType="com.example.entity.TestRecord">
+        SELECT * FROM test_record WHERE user_id = #{userId} ORDER BY create_time DESC
+    </select>
+    
+    <!-- 查询用户最新的特定类型测评记录 -->
+    <select id="findLatestByUserIdAndType" resultType="com.example.entity.TestRecord">
+        SELECT * FROM test_record 
+        WHERE user_id = #{userId} AND test_type = #{testType} 
+        ORDER BY create_time DESC 
+        LIMIT 1
+    </select>
+    
+    <!-- 插入测评记录 -->
+    <insert id="insert" parameterType="com.example.entity.TestRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO test_record(
+            user_id, test_type, 
+            realistic_score, investigative_score, artistic_score, social_score, enterprising_score, conventional_score,
+            technical_functional_score, general_managerial_score, autonomy_independence_score, security_stability_score,
+            entrepreneurial_creativity_score, service_dedication_score, pure_challenge_score, lifestyle_score,
+            create_time, update_time
+        ) VALUES(
+            #{userId}, #{testType}, 
+            #{realisticScore}, #{investigativeScore}, #{artisticScore}, #{socialScore}, #{enterprisingScore}, #{conventionalScore},
+            #{technicalFunctionalScore}, #{generalManagerialScore}, #{autonomyIndependenceScore}, #{securityStabilityScore},
+            #{entrepreneurialCreativityScore}, #{serviceDedicationScore}, #{pureChallengeScore}, #{lifestyleScore},
+            NOW(), NOW()
+        )
+    </insert>
+    
+    <!-- 更新测评记录 -->
+    <update id="update" parameterType="com.example.entity.TestRecord">
+        UPDATE test_record SET 
+            user_id = #{userId},
+            test_type = #{testType},
+            realistic_score = #{realisticScore},
+            investigative_score = #{investigativeScore},
+            artistic_score = #{artisticScore},
+            social_score = #{socialScore},
+            enterprising_score = #{enterprisingScore},
+            conventional_score = #{conventionalScore},
+            technical_functional_score = #{technicalFunctionalScore},
+            general_managerial_score = #{generalManagerialScore},
+            autonomy_independence_score = #{autonomyIndependenceScore},
+            security_stability_score = #{securityStabilityScore},
+            entrepreneurial_creativity_score = #{entrepreneurialCreativityScore},
+            service_dedication_score = #{serviceDedicationScore},
+            pure_challenge_score = #{pureChallengeScore},
+            lifestyle_score = #{lifestyleScore},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+    
+    <!-- 删除测评记录 -->
+    <delete id="deleteById">
+        DELETE FROM test_record WHERE id = #{id}
+    </delete>
+</mapper> 
