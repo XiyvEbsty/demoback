@@ -7,6 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +16,9 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    // 秘钥 - 在实际生产中应该放在配置文件中
-    private final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    // 使用固定的密钥字符串，确保服务重启后令牌仍然有效
+    private final String SECRET_KEY_STRING = "jobRecommendationSystemSecretKey123456789012345678901234567890";
+    private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET_KEY_STRING.getBytes(StandardCharsets.UTF_8));
     
     // 令牌过期时间 - 24小时
     private final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;

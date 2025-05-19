@@ -25,7 +25,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         "/api/users/login",
         "/api/users/register",
         "/error",
-        "/api/public/"  // 新增公共API前缀路径
+        "/api/public/",  // 公共API前缀路径
+        "/api/knowledge-graph/status",  // 知识图谱状态API
+        "/api/knowledge-graph/initialize"  // 知识图谱初始化API
     );
     
     @Override
