@@ -74,8 +74,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean update(User user) {
+        System.out.println("====== 开始更新用户信息 ======");
+        System.out.println("用户ID: " + user.getId());
+        System.out.println("用户名: " + user.getUsername());
+        System.out.println("密码: " + user.getPassword());
+        System.out.println("邮箱: " + user.getEmail());
+        System.out.println("手机: " + user.getPhone());
+        System.out.println("真实姓名: " + user.getRealName());
+        System.out.println("更新时间: " + LocalDateTime.now());
+        
         user.setUpdateTime(LocalDateTime.now());
-        return userMapper.update(user) > 0;
+        int result = userMapper.update(user);
+        System.out.println("更新结果: " + result + " (影响行数)");
+        System.out.println("====== 用户信息更新结束 ======");
+        
+        return result > 0;
     }
 
     @Override
@@ -101,5 +114,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> selectAll() {
         return userMapper.selectAll();
+    }
+
+    @Override
+    public boolean updatePassword(Long userId, String oldPassword, String newPassword) {
+        User user = userMapper.findById(userId);
+        if (user == null) {
+            throw new CustomerException("用户不存在");
+        }
+        
+        // 验证旧密码
+        if (!oldPassword.equals(user.getPassword())) {
+            throw new CustomerException("原密码不正确");
+        }
+        
+        // 更新密码
+        user.setPassword(newPassword);
+        user.setUpdateTime(LocalDateTime.now());
+        
+        return userMapper.update(user) > 0;
     }
 } 

@@ -24,13 +24,17 @@
     
     <!-- 更新用户 -->
     <update id="update" parameterType="com.example.entity.User">
-        UPDATE user SET 
-            password = #{password}, 
-            email = #{email}, 
-            phone = #{phone},
-            real_name = #{realName}, 
-            avatar = #{avatar}, 
-            status = #{status} 
+        UPDATE user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="status != null">status = #{status},</if>
+            update_time = #{updateTime}
+        </set>
         WHERE id = #{id}
     </update>
     

@@ -9,7 +9,19 @@ public class User {
     private Long id;
     private String username;
     private String password;
-
+    private String email;
+    private String phone;
+    private String realName;
+    private String avatar;
+    private String role;
+    private Integer status;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+    
+    // 仅用于传输数据，不映射到数据库
+    private transient String currentPassword;
+    private transient String newPassword;
+    
     public Long getId() {
         return id;
     }
@@ -97,15 +109,20 @@ public class User {
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
-
-    private String email;
-    private String phone;
-    private String realName;
-    private String avatar;
-    private String role;
-    private Integer status;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
-
-    // Getters and Setters
+    
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+    
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+    
+    public String getNewPassword() {
+        return newPassword;
+    }
+    
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 }

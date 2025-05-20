@@ -18,6 +18,8 @@ public interface UserService {
     
     boolean update(User user);
     
+    boolean updatePassword(Long userId, String oldPassword, String newPassword);
+    
     boolean deleteById(Long id);
     
     String login(String username, String password);
